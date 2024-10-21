@@ -70,11 +70,20 @@ app.post('/login',async(req,res)=>{
                 if (result) {
                     if (remember=="remember") {
                         let token=jwt.sign(email,process.env.JWT_SECRET)
-                        return res.cookie('token',token,{ maxAge: 28 * 24 * 60 * 60 * 1000 }).send('ok')
+                        return res.cookie('token',token,{ 
+                            maxAge: 28 * 24 * 60 * 60 * 1000,
+                            httpOnly: true,
+                            sameSite: 'None', // For cross-origin cookies, SameSite must be 'None'
+                            secure: true, // Secure must be true if you're using HTTPS
+                         }).send('ok')
                     }
                     else{
                         let token=jwt.sign(email,process.env.JWT_SECRET)
-                        return res.cookie('token',token).send('ok')
+                        return res.cookie('token',token,{
+                            httpOnly: true,
+                            sameSite: 'None', // For cross-origin cookies, SameSite must be 'None'
+                            secure: true, // Secure must be true if you're using HTTPS
+                          }).send('ok')
                     }
                 }
                 else{
