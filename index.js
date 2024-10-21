@@ -14,7 +14,7 @@ const sendOtpEmail = require('./mailer');
 const signupMail =require('./SignupMail')
 
 app.use(cors({
-    origin:['https://youtube-e-com-frontend.onrender.com'],
+    origin:['https://resilient-scone-7c958a.netlify.app'],
     methods:["POST","GET","DELETE","PATCH"],
     credentials:true
 }))
