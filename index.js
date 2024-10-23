@@ -73,7 +73,7 @@ app.post('/login',async(req,res)=>{
                         return res.cookie('token',token,{ 
                             httpOnly: false,
                             secure: false,
-                            sameSite: '',
+                            sameSite: 'None',
                             path: '/',  // Cookie is available only for URLs starting with /user
                             maxAge: 28 * 60 * 60 * 1000 // 1 day expiration
                          }).send('ok')
@@ -83,7 +83,7 @@ app.post('/login',async(req,res)=>{
                         return res.cookie('token',token,{
                             httpOnly: false,
                             secure: false,
-                            sameSite: '',
+                            sameSite: 'None',
                             path: '/',  // Cookie is available only for URLs starting with /user
                             }).send('ok')
                     }
