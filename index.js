@@ -74,6 +74,7 @@ app.post('/login',async(req,res)=>{
                             httpOnly: false,
                             secure: true,
                             sameSite: 'None',
+                            domain: 'youtube-e-com-frontend.onrender.com',
                             path: '/',  // Cookie is available only for URLs starting with /user
                             maxAge: 28 * 60 * 60 * 1000 // 1 day expiration
                          }).send('ok')
@@ -84,6 +85,7 @@ app.post('/login',async(req,res)=>{
                             httpOnly: false,
                             secure: true,
                             sameSite: 'None',
+                            domain: 'youtube-e-com-frontend.onrender.com',
                             path: '/',  // Cookie is available only for URLs starting with /user
                             maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
                             }).send('ok')
