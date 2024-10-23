@@ -81,7 +81,7 @@ app.post('/login',async(req,res)=>{
                     else{
                         let token=jwt.sign(email,process.env.JWT_SECRET)
                         return res.cookie('token',token,{
-                            httpOnly: true,
+                            httpOnly: false,   // Prevent access to the cookie via JavaScript
                             sameSite: 'None', // For cross-origin cookies, SameSite must be 'None'
                             secure: true, // Secure must be true if you're using HTTPS
                           }).send('ok')
