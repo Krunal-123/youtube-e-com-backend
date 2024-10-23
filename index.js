@@ -72,18 +72,11 @@ app.post('/login',async(req,res)=>{
                         let token=jwt.sign(email,process.env.JWT_SECRET)
                         return res.cookie('token',token,{ 
                             maxAge: 28 * 24 * 60 * 60 * 1000,
-                            httpOnly: false,
-                            sameSite: 'None', // For cross-origin cookies, SameSite must be 'None'
-                            secure: true, // Secure must be true if you're using HTTPS
                          }).send('ok')
                     }
                     else{
                         let token=jwt.sign(email,process.env.JWT_SECRET)
-                        return res.cookie('token',token,{
-                            httpOnly: false,   // Prevent access to the cookie via JavaScript
-                            sameSite: 'None', // For cross-origin cookies, SameSite must be 'None'
-                            secure: true, // Secure must be true if you're using HTTPS
-                          }).send('ok')
+                        return res.cookie('token',token).send('ok')
                     }
                 }
                 else{
