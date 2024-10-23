@@ -75,7 +75,7 @@ app.post('/login',async(req,res)=>{
                             maxAge: 28 * 24 * 60 * 60 * 1000,
                             httpOnly: false,
                             sameSite: 'None', // For cross-origin cookies, SameSite must be 'None'
-                            secure: true, // Secure must be true if you're using HTTPS
+                            secure: false, // Secure must be true if you're using HTTPS
                          }).send('ok')
                     }
                     else{
@@ -83,7 +83,7 @@ app.post('/login',async(req,res)=>{
                         return res.cookie('token',token,{
                             httpOnly: false,   // Prevent access to the cookie via JavaScript
                             sameSite: 'None', // For cross-origin cookies, SameSite must be 'None'
-                            secure: true, // Secure must be true if you're using HTTPS
+                            secure: false, // Secure must be true if you're using HTTPS
                           }).send('ok')
                     }
                 }
