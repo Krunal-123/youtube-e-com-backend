@@ -283,15 +283,13 @@ app.post("/addfavourite/delete", async (req, res) => {
     })
 
 // dark or light mode update here
-// .post('/light',async(req,res)=>{
-//     let {email,mode} =req.body
-//     console.log(email);
-//     await user.updateOne({email},{lightMode:mode}).then((p)=>{
-//         console.log(p);
-//         console.log(mode);
-//         res.send('done')
-//     })
-// })
+.post('/light',async(req,res)=>{
+    let {email,mode} =req.body
+    console.log(email);
+    await user.updateOne({email},{lightMode:mode}).then((p)=>{
+        res.send('done')
+    })
+})
 
 //   App listing
 app.listen(3000, () => {

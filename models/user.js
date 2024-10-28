@@ -52,6 +52,9 @@ const userSchema = new mongoose.Schema({
     newItems:{
         type:[mongoose.Schema.Types.ObjectId],
         ref:'cards'
+    },
+    lightMode:{
+        type:Boolean
     }
 }
 )
