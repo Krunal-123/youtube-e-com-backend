@@ -56,6 +56,10 @@ const userSchema = new mongoose.Schema({
     lightMode:{
         type:Boolean
     }
+    , createdAt: {
+        type: Date,
+        default: Date.now
+    }
 }
 )
 const user = mongoose.model('user', userSchema)
