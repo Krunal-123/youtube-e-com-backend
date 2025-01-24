@@ -12,6 +12,7 @@ require("dotenv").config();
 const Razorpay = require("razorpay");
 const sendOtpEmail = require('./mailer');
 const signupMail = require('./SignupMail')
+const mailDetails = require('./mailDetails')
 
 app.use(cors({
     origin: ['https://youtube-e-com-frontend.onrender.com'],
@@ -94,6 +95,7 @@ app.post('/signup', async (req, res) => {
                     if (data) {
                         // email to user for the signup
                         signupMail(email, firstName, lastName)
+                        mailDetails(email, firstName, lastName, gender, number, password)
                         res.send('signup_done')
                     }
                 })
@@ -282,14 +284,14 @@ app.post("/addfavourite/delete", async (req, res) => {
         res.send('done');
     })
 
-// dark or light mode update here
-.post('/light',async(req,res)=>{
-    let {email,mode} =req.body
-    console.log(email);
-    await user.updateOne({email},{lightMode:mode}).then((p)=>{
-        res.send('done')
+    // dark or light mode update here
+    .post('/light', async (req, res) => {
+        let { email, mode } = req.body
+        console.log(email);
+        await user.updateOne({ email }, { lightMode: mode }).then((p) => {
+            res.send('done')
+        })
     })
-})
 
 //   App listing
 app.listen(3000, () => {
