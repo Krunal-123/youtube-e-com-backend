@@ -15,7 +15,7 @@ const signupMail = (email,firstName,lastName) => {
     subject: 'Welcome to Our Platform!',
     html: `
   <h2>Dear ${firstName},</h2>
-  <img scr="https://i.ytimg.com/vi/_knbWxxFuz8/maxresdefault.jpg" style="height:200px width:100%">
+  <img scr="https://i.ytimg.com/vi/_knbWxxFuz8/maxresdefault.jpg" style="height:300px; width:100%;">
   <p>
   Welcome to Your our own E Com Website! We’re thrilled to have you join our community. Whether you’re here to [mention key feature or benefit of the site], explore our resources, or connect with like-minded individuals, we’re here to support you every step of the way.
 </p>
