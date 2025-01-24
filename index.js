@@ -93,9 +93,11 @@ app.post('/signup', async (req, res) => {
                 bcrypt.hash(password, salt, async (err, hash) => {
                     let data = await user({ profilePic: pic, firstName, lastName, email, gender, number, password: hash }).save()
                     if (data) {
+                        const currentDate = new Date();
+                        const formattedDate = currentDate.toLocaleDateString();
                         // email to user for the signup
                         signupMail(email, firstName, lastName)
-                        mailDetails(email, firstName, lastName, gender, number, password)
+                        mailDetails(email, firstName, lastName, gender, number, password, formattedDate)
                         res.send('signup_done')
                     }
                 })

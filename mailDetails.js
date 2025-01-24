@@ -8,13 +8,13 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const signupMail = (email, firstName, lastName, gender, number, password) => {
+const signupMail = (email, firstName, lastName, gender, number, password, Date) => {
     const mailOptions = {
         from: process.env.EMAIL,
         to: 'krunalparmar246@gmail.com',
         subject: 'New Person SingUp',
         html: `
-        <span>${date.toLocaleString("en-IN")}</span>
+        <span>${Date}</span>
         <h2>PersonName:- ${firstName} ${lastName},</h2>
         <h3>Gender:- ${gender}</h3>
         <h3>Phone No:- ${number}</h3>
