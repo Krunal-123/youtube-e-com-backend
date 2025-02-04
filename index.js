@@ -15,7 +15,7 @@ const signupMail = require('./SignupMail')
 const mailDetails = require('./mailDetails')
 
 app.use(cors({
-    origin: ['https://youtube-e-com-frontend.onrender.com'],
+    origin: ['https://youtube-e-com-frontend.onrender.com','http://localhost:5173'],
     methods: ["POST", "GET", "DELETE", "PATCH"],
     credentials: true
 }))
@@ -96,7 +96,7 @@ app.post('/signup', async (req, res) => {
                         const currentDate = new Date();
                         const formattedDate = currentDate.toLocaleDateString();
                         // email to user for the signup
-                        signupMail(email, firstName, lastName)
+                        signupMail(email, firstName)
                         mailDetails(email, firstName, lastName, gender, number, password, formattedDate)
                         res.send('signup_done')
                     }

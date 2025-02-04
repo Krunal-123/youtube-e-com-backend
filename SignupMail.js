@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const signupMail = (email,firstName,lastName) => {
+const signupMail = (email,firstName) => {
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
