@@ -15,7 +15,7 @@ const signupMail = require('./SignupMail')
 const mailDetails = require('./mailDetails')
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://youtube-e-com-frontend.onrender.com'],
+    origin: ['https://youtube-e-com-frontend.onrender.com'],
     methods: ["POST", "GET", "DELETE", "PATCH"],
     credentials: true
 }))
