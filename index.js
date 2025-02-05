@@ -15,7 +15,7 @@ const signupMail = require('./SignupMail')
 const mailDetails = require('./mailDetails')
 
 app.use(cors({
-    origin: ['https://youtube-e-com-frontend.onrender.com','http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://youtube-e-com-frontend.onrender.com'],
     methods: ["POST", "GET", "DELETE", "PATCH"],
     credentials: true
 }))
@@ -62,7 +62,7 @@ app.post("/create-order", async (req, res) => {
 // LOGIN
 app.post('/login', async (req, res) => {
     try {
-        const { email, password} = req.body;
+        const { email, password } = req.body;
         const User = await user.findOne({ email });
         if (!User) return res.send('Invalid credentials');
         const isMatch = await bcrypt.compare(password, User.password);
