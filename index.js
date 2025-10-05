@@ -64,17 +64,16 @@ app.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         const User = await user.findOne({ email });
-        if (!User) return res.status(401).send('Invalid credentials');
+        if (!User) return res.status(400).send('Invalid credentials');
         const isMatch = await bcrypt.compare(password, User.password);
         if (isMatch) {
             let token = jwt.sign(email, process.env.JWT_SECRET)
             return res.send(token).status(200)
         }
         else {
-            return res.send('Invalid credentials').status(401)
+            return res.status(400).send('Invalid credentials')
         }
     } catch (error) {
-        console.log(error);
         res.status(500).send('Server error');
     }
 })
