@@ -71,7 +71,7 @@ app.post('/login', async (req, res) => {
             return res.send(token).status(200)
         }
         else {
-            return res.send('Invalid credentials')
+            return res.send('Invalid credentials').status(401)
         }
     } catch (error) {
         console.log(error);
