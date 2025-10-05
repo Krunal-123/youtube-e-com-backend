@@ -15,7 +15,7 @@ const signupMail = require('./SignupMail')
 const mailDetails = require('./mailDetails')
 
 app.use(cors({
-    origin: ['https://youtube-e-com-frontend.onrender.com','http://localhost:5173'],
+    origin: ['https://youtube-e-com-frontend.onrender.com', 'http://localhost:5173'],
     methods: ["POST", "GET", "DELETE", "PATCH"],
     credentials: true
 }))
@@ -64,17 +64,17 @@ app.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         const User = await user.findOne({ email });
-        if (!User) return res.status(400).send('Invalid credentials');
+        if (!User) return res.status(400).json({ message: "User Don't Exist" });
         const isMatch = await bcrypt.compare(password, User.password);
         if (isMatch) {
             let token = jwt.sign(email, process.env.JWT_SECRET)
             return res.send(token).status(200)
         }
         else {
-            return res.status(400).send('Invalid credentials')
+            return res.status(400).json({ message: 'Invalid Password' })
         }
     } catch (error) {
-        res.status(500).send('Server error');
+        res.status(500).json({ message: 'Server error' });
     }
 })
 // SIGN UP
