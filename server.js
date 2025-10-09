@@ -1,13 +1,13 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
+import express from "express"
+import cors from "cors"
+import cookieParser from "cookie-parser"
 require("dotenv").config();
 import ConnectionDB from "./Config/db.js"
 // Error Handler
 import { errorMiddleware } from "./MiddleWares/errorMiddleware.js";
 import ErrorHandler from "./Utils/ErrorHandler.js";
 
+const app = express()
 app.use(cors({
     origin: ['https://youtube-e-com-frontend.onrender.com', 'http://localhost:5173'],
     methods: ["POST", "GET", "DELETE", "PATCH"],

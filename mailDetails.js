@@ -1,19 +1,19 @@
-const nodemailer = require('nodemailer');
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASS,
-    },
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASS,
+  },
 });
 
 const signupMail = (email, firstName, lastName, gender, number, password, date) => {
-    const mailOptions = {
-        from: process.env.EMAIL,
-        to: "krunalparmar246@gmail.com",
-        subject: "🎉 New User Signed Up!",
-        html: `
+  const mailOptions = {
+    from: process.env.EMAIL,
+    to: "krunalparmar246@gmail.com",
+    subject: "🎉 New User Signed Up!",
+    html: `
       <div style="
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background-color: #f9fafb;
@@ -52,16 +52,16 @@ const signupMail = (email, firstName, lastName, gender, number, password, date) 
         </div>
       </div>
     `
-    };
+  };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error("❌ Error sending signup email:", error);
-        } else {
-            console.log("✅ Signup email sent successfully:", info.response);
-        }
-    });
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("❌ Error sending signup email:", error);
+    } else {
+      console.log("✅ Signup email sent successfully:", info.response);
+    }
+  });
 };
 
 
-module.exports = signupMail;
+export default signupMail;
