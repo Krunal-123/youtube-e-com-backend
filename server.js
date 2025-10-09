@@ -1,7 +1,8 @@
 import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 import ConnectionDB from "./Config/db.js"
 // Error Handler
 import { errorMiddleware } from "./MiddleWares/errorMiddleware.js";
