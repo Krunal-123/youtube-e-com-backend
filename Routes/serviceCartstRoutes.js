@@ -1,9 +1,10 @@
 import express from "express"
 const router = express.Router()
 import { servivce, search, review } from "../Controllers/servicesCartstRoutes.js"
+import routes from "./authRoutes.js"
 
-router.post("/", servivce)
-router.post("/search", search)
-router.post("/review", review)
+routes.post("/", servivce)
+routes.post("/search", search)
+routes.post("/review", review)
 
 export default routes;
