@@ -7,12 +7,20 @@ import ConnectionDB from "./Config/db.js"
 // Error Handler
 import { errorMiddleware } from "./MiddleWares/errorMiddleware.js";
 import ErrorHandler from "./Utils/ErrorHandler.js";
+// Routes import
+import authRoutes from "./Routes/authRoutes.js";
+import darkModeRoutes from "./Routes/darkModeRoutes.js";
+import paymentRoutes from "./Routes/paymentRoutes.js";
+import resetRoutes from "./Routes/resetRoutes.js";
+import serviceCartRoutes from "./Routes/serviceCartstRoutes.js";
+import userCartRoutes from "./Routes/userCartRoutes.js";
+import userInfoRoutes from "./Routes/userInfoRoutes.js";
 
 const app = express()
 app.use(cors({
-    origin: ['https://youtube-e-com-frontend.onrender.com', 'http://localhost:5173'],
-    methods: ["POST", "GET", "DELETE", "PATCH"],
-    credentials: true
+  origin: ['https://youtube-e-com-frontend.onrender.com', 'http://localhost:5173'],
+  methods: ["POST", "GET", "DELETE", "PATCH"],
+  credentials: true
 }))
 
 // DataBase Connection
@@ -25,13 +33,13 @@ app.use(express.json({ extended: false }));
 // Must be after all routes
 app.use(errorMiddleware);
 
-app.use("/api/auth", require("./Routes/authRoutes"));
-app.use("/mode", require("./Routes/darkModeRoutes"));
-app.use("/api/payment", require("./Routes/paymentRoutes"));
-app.use("/reset", require("./Routes/resetRoutes"));
-app.use("/cart", require("./Routes/serviceCartstRoutes"));
-app.use("/addcart", require("./Routes/userCartRoutes"));
-app.use("/userinfo", require("./Routes/userInfoRoutes"));
+app.use("/api/auth", authRoutes);
+app.use("/mode", darkModeRoutes);
+app.use("/api/payment", paymentRoutes);
+app.use("/reset", resetRoutes);
+app.use("/cart", serviceCartRoutes);
+app.use("/addcart", userCartRoutes);
+app.use("/userinfo", userInfoRoutes);
 app.get("*", (req, res, next) => {
   // manually throw an error
   return next(new ErrorHandler(404, "This route does not exist"));
@@ -40,5 +48,5 @@ app.get("*", (req, res, next) => {
 
 //   App listing
 app.listen(process.env.PORT, () => {
-    console.log('listning');
+  console.log(`Listning on PORT ${process.env.PORT}`);
 })
