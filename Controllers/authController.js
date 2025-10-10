@@ -1,12 +1,15 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import user from "../models/user";
-import signupMail from "../utils/SignupMail";
-import mailDetails from "../utils/mailDetails";
-import sendOtpEmail from "../mailer";
-import ErrorHandler from "../Utils/ErrorHandler";
+import user from "../models/user.js";
+import dotenv from "dotenv";
+dotenv.config();
+// import Routes
+import signupMail from "../SignupMail.js";
+import mailDetails from "../mailDetails.js";
+import sendOtpEmail from "../mailer.js";
+import ErrorHandler from "../Utils/ErrorHandler.js";
 
-const signup = async (req, res, next) => {
+export const signup = async (req, res, next) => {
     try {
         const { firstName, lastName, number, email, gender, password } = req.body;
         const existingUser = await user.findOne({ email });
@@ -20,14 +23,13 @@ const signup = async (req, res, next) => {
         const newUser = await user.create({ profilePic: pic, firstName, lastName, email, gender, number, password: hash });
         signupMail(email, firstName);
         mailDetails(email, firstName, lastName, gender, number, password, new Date().toLocaleDateString());
-
         res.json({ success: true, message: "🎉 Account Created Successfully 🎉" }).status(201);
     } catch (error) {
         return next(new ErrorHandler())
     }
 };
 
-const login = async (req, res, next) => {
+export const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         const User = await user.findOne({ email });
@@ -43,7 +45,7 @@ const login = async (req, res, next) => {
     }
 };
 
-const sendOTP = async (req, res, next) => {
+export const sendOTP = async (req, res, next) => {
     try {
 
         const { email } = req.body;
@@ -66,5 +68,3 @@ const sendOTP = async (req, res, next) => {
         return next(new ErrorHandler())
     }
 };
-
-export default { login, signup, sendOTP };

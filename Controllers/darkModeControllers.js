@@ -1,8 +1,8 @@
-import user from "../models/user"
-import ErrorHandler from "../Utils/ErrorHandler"
+import user from "../models/user.js";
+import ErrorHandler from "../Utils/ErrorHandler.js";
 
-export const themeMode = async (req, res, next) => {
-    try{
+const themeMode = async (req, res, next) => {
+    try {
 
         let { email, mode } = req.body
         await user.updateOne({ email }, { lightMode: mode }).then((p) => {
@@ -11,7 +11,9 @@ export const themeMode = async (req, res, next) => {
                 message: "Theme Changed Successfully"
             })
         })
-    }catch(err){
+    } catch (err) {
         return next(new ErrorHandler());
     }
 }
+
+export default themeMode;

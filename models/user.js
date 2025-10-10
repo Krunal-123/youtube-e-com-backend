@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-const { type } = require('os');
 const userSchema = new mongoose.Schema({
     profilePic: {
         type: String,

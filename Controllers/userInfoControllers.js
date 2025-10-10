@@ -1,6 +1,6 @@
-import user from "../models/user"
-import UserDetails from "../models/UserDetails"
-import ErrorHandler from "../Utils/ErrorHandler"
+import user from "../models/user.js"
+import UserDetails from "../models/UserDetails.js"
+import ErrorHandler from "../Utils/ErrorHandler.js"
 const updateDetails = async (req, res,next) => {
     try {
 

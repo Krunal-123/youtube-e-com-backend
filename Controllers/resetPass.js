@@ -1,8 +1,8 @@
-import user from "../models/user";
 import bcrypt from "bcrypt"
-import ErrorHandler from "../Utils/ErrorHandler";
+import user from "../models/user.js";
+import ErrorHandler from "../Utils/ErrorHandler.js";
 
-export const resetPass = async (res, req, next) => {
+const resetPass = async (res, req, next) => {
     const { email, password } = req.body;
     try {
         let saltRound = 10
@@ -25,3 +25,4 @@ export const resetPass = async (res, req, next) => {
         return next(new ErrorHandler());
     }
 }
+export default resetPass;

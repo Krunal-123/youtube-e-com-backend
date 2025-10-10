@@ -1,11 +1,13 @@
 import Razorpay from "razorpay"
-import ErrorHandler from "../Utils/ErrorHandler";
+import ErrorHandler from "../Utils/ErrorHandler.js";
+import dotenv from "dotenv";
+dotenv.config();
 // Server-side (Node.js) code to create Razorpay order
 const razorpayInstance = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_SECRET,
 });
-export const order = async (req, res, next) => {
+const order = async (req, res, next) => {
     const { amount } = req.body;
     const options = {
         amount: amount * 100, // amount in smallest currency unit
@@ -24,3 +26,4 @@ export const order = async (req, res, next) => {
         return next(new ErrorHandler());
     }
 }
+export default order;

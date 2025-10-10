@@ -1,6 +1,5 @@
-import { json } from "stream/consumers";
-import cards from "../models/cards";
-import ErrorHandler from "../Utils/ErrorHandler";
+import cards from "../models/cards.js";
+import ErrorHandler from "../Utils/ErrorHandler.js";
 
 export const services = async (req, res, next) => {
     try {

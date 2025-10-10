@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken"
-import user from "../models/user"
-import ErrorHandler from "../Utils/ErrorHandler"
+import user from "../models/user.js"
+import ErrorHandler from "../Utils/ErrorHandler.js"
+import dotenv from "dotenv";
+dotenv.config();
 export const addcart = async (req, res, next) => {
     try {
         let { id, cookies } = req.body
