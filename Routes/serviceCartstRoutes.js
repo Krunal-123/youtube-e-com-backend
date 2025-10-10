@@ -1,5 +1,5 @@
 import express from "express"
-const router = express.Router()
+const routes = express.Router()
 import { servivce, search, review } from "../Controllers/servicesCartstRoutes.js"
 import routes from "./authRoutes.js"
 

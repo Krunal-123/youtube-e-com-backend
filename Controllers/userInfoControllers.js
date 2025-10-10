@@ -28,4 +28,4 @@ const contactus = async (req, res,next) => {
         return next(new ErrorHandler());
     }
 }
-export default { updateDetails, contactus }
+export { updateDetails, contactus };
