@@ -1,9 +1,8 @@
 import express from "express"
 const routes = express.Router()
-import { servivce, search, review } from "../Controllers/servicesCartstRoutes.js"
-import routes from "./authRoutes.js"
+import { services, search, review } from "../Controllers/servicesCartstRoutes.js";
 
-routes.post("/", servivce)
+routes.post("/", services)
 routes.post("/search", search)
 routes.post("/review", review)
 
