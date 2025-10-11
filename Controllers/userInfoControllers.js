@@ -1,7 +1,8 @@
+import { log } from "console"
 import user from "../models/user.js"
 import UserDetails from "../models/UserDetails.js"
 import ErrorHandler from "../Utils/ErrorHandler.js"
-const updateDetails = async (req, res,next) => {
+const updateDetails = async (req, res, next) => {
     try {
 
         let { profilePic, firstName, lastName, email, gender, number } = req.body
@@ -15,17 +16,17 @@ const updateDetails = async (req, res,next) => {
         return next(new ErrorHandler());
     }
 }
-const contactus = async (req, res,next) => {
-    try {
+const contactus = async (req, res, next) => {
+    let { Name, Phone, Email, Subject, Message } = req.body;
+    console.log({ Name, Phone, Email, Subject, Message });
 
-        let { Name, Phone, Email, Subject, Message } = req.body;
-        await UserDetails({ Name, Phone, Email, Subject, Message }).save();
+    UserDetails({ Name, Phone, Email, Subject, Message }).save().then((data) => {
         res.status(200).json({
             success: true,
             message: "Submited Successfully"
-        });
-    } catch (err) {
+        })
+    }).catch(err => {
         return next(new ErrorHandler());
-    }
+    })
 }
 export { updateDetails, contactus };

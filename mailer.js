@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendOtpEmail = (email, otp) => {
+const sendOtpEmail = (email, otp, res) => {
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
@@ -21,8 +21,14 @@ const sendOtpEmail = (email, otp) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error('Error sending OTP email:', error);
+      res.status(404).json({ success: false, message: "Failed to send❌" })
     } else {
       console.log('Email sent: ' + info.response);
+      res.status(200).json({
+        success: true,
+        message: "Send OTP Successfully",
+        data: otp
+      });
     }
   });
 };

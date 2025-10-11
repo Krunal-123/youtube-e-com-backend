@@ -15,11 +15,12 @@ import resetRoutes from "./Routes/resetRoutes.js";
 import serviceCartRoutes from "./Routes/serviceCartstRoutes.js";
 import userCartRoutes from "./Routes/userCartRoutes.js";
 import userInfoRoutes from "./Routes/userInfoRoutes.js";
+import favouritesCartsRoutes from "./Routes/favouritesCartsRoutes.js"
 
 const app = express()
 app.use(cors({
-  origin: ['https://youtube-e-com-frontend.onrender.com', 'http://localhost:5173'],
-  methods: ["POST", "GET", "DELETE", "PATCH"],
+  origin: [process.env.ORIGIN],
+  methods: ["POST", "GET", "DELETE", "PATCH", "PUT"],
   credentials: true
 }))
 
@@ -34,13 +35,14 @@ app.use(express.json({ extended: false }));
 app.use(errorMiddleware);
 
 app.use("/api/auth", authRoutes);
-app.use("/mode", darkModeRoutes);
+app.use("/darkmode", darkModeRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/reset", resetRoutes);
 app.use("/cart", serviceCartRoutes);
 app.use("/addcart", userCartRoutes);
+app.use("/addfavourites", favouritesCartsRoutes)
 app.use("/userinfo", userInfoRoutes);
-app.get("*", (req, res, next) => {
+app.get("/test", (req, res, next) => {
   // manually throw an error
   return next(new ErrorHandler(404, "This route does not exist"));
 });

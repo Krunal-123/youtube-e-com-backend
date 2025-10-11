@@ -13,8 +13,7 @@ export const signup = async (req, res, next) => {
     try {
         const { firstName, lastName, number, email, gender, password } = req.body;
         const existingUser = await user.findOne({ email });
-        if (existingUser) return res.status(409).json({ message: "User Already Exists" });
-
+        if (existingUser) return res.status(404).json({ message: "Already Account Created" });
         const hash = await bcrypt.hash(password, 10);
         const pic = gender === "Male"
             ? "https://yt3.ggpht.com/a/AATXAJzFE_5zKBk19JRw6RbSvLseEhNrI0W5qfPjoQ=s900-c-k-c0xffffffff-no-rj-mo"
@@ -33,13 +32,15 @@ export const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         const User = await user.findOne({ email });
-        if (!User) return res.status(404).json({ message: "User Doesn't Exist" });
-
+        if (!User) return res.status(404).json({ success: false, message: "User Doesn't Exist❌" });
         const isMatch = await bcrypt.compare(password, User.password);
-        if (!isMatch) return res.status(401).json({ message: "Invalid Password" });
-
+        if (!isMatch) return res.status(404).json({ success: false, message: "Invalid Password❌" });
         const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "7d" });
-        res.json({ success: true, message: "Successfully Login", data: token }).status(200);
+        res.status(200).json({
+            success: true,
+            message: "Successfully Login",
+            data: token
+        })
     } catch (error) {
         return next(new ErrorHandler(500, "server Error"))
     }
@@ -49,22 +50,19 @@ export const sendOTP = async (req, res, next) => {
     try {
 
         const { email } = req.body;
+        console.log(email);
+
         user.find({ email }).then((data) => {
             if (data.length <= 0) {
-                return next(new ErrorHandler(404, "User Not Found"))
+                return res.status(404).json({ success: false, message: "User Not Found❌" });
             }
             else {
                 // Generate OTP and expiration
                 const otp = Math.floor(100000 + Math.random() * 900000).toString();
-                sendOtpEmail(email, otp);
-                res.status(200).json({
-                    success: true,
-                    message: "OTP send Successfully",
-                    data: otp
-                });
+                sendOtpEmail(email, otp, res);
             }
         })
     } catch (err) {
-        return next(new ErrorHandler())
+        return next(new ErrorHandler(500, "server Error"))
     }
 };

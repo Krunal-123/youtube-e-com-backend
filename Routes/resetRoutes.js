@@ -3,6 +3,6 @@ const routes = express.Router();
 // Controllers
 import resetPass from '../Controllers/resetPass.js'
 
-routes.post('/', resetPass)
+routes.patch('/', resetPass)
 
 export default routes;

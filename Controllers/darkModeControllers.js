@@ -5,10 +5,11 @@ const themeMode = async (req, res, next) => {
     try {
 
         let { email, mode } = req.body
+        const data = mode ? "DARK MODE ON" : "DARK MODE OFF"
         await user.updateOne({ email }, { lightMode: mode }).then((p) => {
             res.status(200).json({
                 success: true,
-                message: "Theme Changed Successfully"
+                message: data,
             })
         })
     } catch (err) {
