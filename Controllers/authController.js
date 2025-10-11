@@ -50,8 +50,6 @@ export const sendOTP = async (req, res, next) => {
     try {
 
         const { email } = req.body;
-        console.log(email);
-
         user.find({ email }).then((data) => {
             if (data.length <= 0) {
                 return res.status(404).json({ success: false, message: "User Not Found❌" });

@@ -20,10 +20,8 @@ const sendOtpEmail = (email, otp, res) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error('Error sending OTP email:', error);
-      res.status(404).json({ success: false, message: "Failed to send❌" })
+      res.status(404).json({ success: false, message: "Failed to send ❌", error })
     } else {
-      console.log('Email sent: ' + info.response);
       res.status(200).json({
         success: true,
         message: "Send OTP Successfully",
