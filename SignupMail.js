@@ -3,14 +3,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  service: "gmail",
   auth: {
     user: "loundryservices@gmail.com",
     pass: "cjcq cudv zail qsce",
-  },
-  connectionTimeout: 10000, // 10 seconds
+  }
 });
 
 const signupMail = async (email, firstName) => {

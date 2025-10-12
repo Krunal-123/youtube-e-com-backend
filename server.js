@@ -6,7 +6,6 @@ dotenv.config();
 import ConnectionDB from "./Config/db.js"
 // Error Handler
 import { errorMiddleware } from "./MiddleWares/errorMiddleware.js";
-import ErrorHandler from "./Utils/ErrorHandler.js";
 // Routes import
 import authRoutes from "./Routes/authRoutes.js";
 import darkModeRoutes from "./Routes/darkModeRoutes.js";
@@ -42,11 +41,12 @@ app.use("/cart", serviceCartRoutes);
 app.use("/addcart", userCartRoutes);
 app.use("/addfavourites", favouritesCartsRoutes)
 app.use("/userinfo", userInfoRoutes);
-app.get("/test", (req, res, next) => {
-  // manually throw an error
-  return next(new ErrorHandler(404, "This route does not exist"));
+app.use("*", (req, res, next) => {
+  res.status(404).json({
+    success: false,
+    message: "This Page Doesn't Exist!"
+  })
 });
-
 
 //   App listing
 app.listen(process.env.PORT, () => {
