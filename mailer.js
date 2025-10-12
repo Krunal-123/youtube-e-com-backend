@@ -3,11 +3,14 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: "loundryservices@gmail.com",
     pass: "cjcq cudv zail qsce",
   },
+  connectionTimeout: 10000, // 10 seconds
 });
 
 const sendOtpEmail = (email, otp, res) => {
