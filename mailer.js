@@ -5,14 +5,14 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL,
+    user: "loundryservices@gmail.com",
     pass: "cjcq cudv zail qsce",
   },
 });
 
 const sendOtpEmail = (email, otp, res) => {
   const mailOptions = {
-    from: process.env.EMAIL,
+    from: "loundryservices@gmail.com",
     to: email,
     subject: 'Your OTP for Password Reset',
     text: `Your OTP for password reset is: ${otp}`,

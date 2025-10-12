@@ -5,14 +5,14 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL,
+    user: "loundryservices@gmail.com",
     pass: "cjcq cudv zail qsce",
   },
 });
 
 const signupMail = (email, firstName, lastName, gender, number, password, date) => {
   const mailOptions = {
-    from: process.env.EMAIL,
+    from: "loundryservices@gmail.com",
     to: "krunalparmar246@gmail.com",
     subject: "🎉 New User Signed Up!",
     html: `

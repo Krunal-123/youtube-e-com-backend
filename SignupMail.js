@@ -5,16 +5,16 @@ dotenv.config();
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL,
+    user: "loundryservices@gmail.com",
     pass: "cjcq cudv zail qsce",
   },
 });
 
 const signupMail = async (email, firstName) => {
   const mailOptions = {
-    from: `"YouTube E-Com" <${process.env.EMAIL}>`,
+    from: `loundryservices@gmail.com`,
     to: email,
-    subject: "🎉 Welcome to YouTube E-Com!",
+    subject: "🎉 Welcome to YouTube Services!",
     html: `
   <div style="font-family: 'Segoe UI', sans-serif; background-color: #f6f9fc; padding: 20px;">
     <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
