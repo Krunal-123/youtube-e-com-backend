@@ -1,13 +1,13 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import user from "../models/user.js";
+import ErrorHandler from "../Utils/ErrorHandler.js";
 import dotenv from "dotenv";
 dotenv.config();
-// import Routes
+// import nodermailers
 import signupMail from "../SignupMail.js";
 import mailDetails from "../mailDetails.js";
 import sendOtpEmail from "../mailer.js";
-import ErrorHandler from "../Utils/ErrorHandler.js";
 
 export const signup = async (req, res, next) => {
     try {

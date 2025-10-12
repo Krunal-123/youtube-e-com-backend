@@ -4,11 +4,11 @@ import ErrorHandler from "../Utils/ErrorHandler.js";
 
 export const services = async (req, res, next) => {
     try {
-        const categorise = req.body
-        if (categorise == undefined || categorise.categorise == "all") {
-            categorise = {}
+        let filter = req.body
+        if (filter == undefined || filter.categorise == "all") {
+            filter = {}
         }
-        const data = await cards.find(categorise)
+        const data = await cards.find(filter)
         res.status(200).json({
             success: true,
             message: "Successfully",
@@ -53,21 +53,21 @@ export const review = async (req, res, next) => {
         rating = 0
     }
     cards.findByIdAndUpdate(
-            { _id: id },
-            {
-                $push: {
-                    reviews: {
-                        _id: new mongoose.Types.ObjectId(),
-                        profilePic,
-                        name,
-                        review,
-                        rating,
-                        createdAt: new Date(),
-                    },
+        { _id: id },
+        {
+            $push: {
+                reviews: {
+                    _id: new mongoose.Types.ObjectId(),
+                    profilePic,
+                    name,
+                    review,
+                    rating,
+                    createdAt: new Date(),
                 },
             },
-            { new: true }
-        )
+        },
+        { new: true }
+    )
         .then((r) => {
             res.status(200).json({
                 success: true,
